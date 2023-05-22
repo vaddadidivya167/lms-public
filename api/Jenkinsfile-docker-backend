@@ -15,14 +15,13 @@ pipeline {
         
          stage('creating  new docker network') {
             steps {
-               
+                sh 'docker network rm lmsnetwork'
                 sh 'docker network create lmsnetwork'
             }
         }
 
         stage('Building the docker image') {
             steps {
-                sh 'docker network rm lmsnetwork'
                 sh 'cd api && docker build -t divyavad5/backend-lms .'
             }
         }
